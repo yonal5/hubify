@@ -50,7 +50,7 @@ export default function UpdateProductPage() {
 				stock : stock
 			}
 
-			await axios.put(import.meta.env.VITE_API_URL+"/products/"+productId,product,{
+			await axios.put(import.meta.env.VITE_API_URL+"/api/products/"+productId,product,{
 				headers:{
 					Authorization : "Bearer "+token
 				}
@@ -228,7 +228,7 @@ export default function UpdateProductPage() {
 					<div className="flex items-center gap-2">
 						<button
 							onClick={() => {
-								navigate("/admin/products");
+								navigate("/api/admin/products");
 							}}
 							className="rounded-full bg-[#FF000050] px-3 h-[40px] w-[100px] py-1 text-md flex justify-center items-center font-medium text-secondary ring-1 ring-accent/30 hover:border-red-500 hover:border-[2px]"
 						>
