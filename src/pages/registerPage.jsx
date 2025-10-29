@@ -60,8 +60,8 @@ export default function RegisterPage() {
 						<div className="rounded-3xl backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl p-8 sm:p-10">
 							<div className="mb-8 flex flex-col items-center text-center">
 								<img
-									src="/logo.png"
-									alt="Alipres Logo"
+									src="/Hubify.png"
+									alt="Hubify Logo"
 									className="h-12 w-auto mb-4"
 								/>
 								<h2 className="text-2xl font-semibold text-white">
@@ -195,7 +195,7 @@ export default function RegisterPage() {
 				<div className="hidden lg:flex flex-col justify-between p-10">
 					<div className="flex items-center gap-4">
 						<img
-							src="/logo.png"
+							src="/Hubify.png"
 							alt="Alipres - Best Computer & Gaming Store"
 							className="h-10 w-auto"
 						/>

@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import toast from "react-hot-toast";
 import { Loader } from "../components/loader";
 import ProductCard from "../components/productCard";
-import Header, { ProductNews, TtitleBar,} from "../components/header";
+import Header, { TtitleBar } from "../components/header";
 import React from "react";
 
 export function ProductPage() {

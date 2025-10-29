@@ -51,7 +51,7 @@ export default function AdminPage() {
 			<div className="w-[300px] h-full bg-primary flex flex-col items-center gap-[20px]">
 				<div className="flex flex-row w-[90%] h-[70px] bg-accent items-center rounded-2xl mb-[20px]">
 					<img
-						src="/logo.png"
+						src="/Hubify.png"
 						alt="Alipres - Best Computer & Gaming Store"
 						className="h-[70px]"
 					/>
