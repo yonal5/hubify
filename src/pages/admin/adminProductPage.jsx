@@ -17,7 +17,7 @@ function ProductDeleteConfirm(props){
 	function deleteProduct(){
 		const token = localStorage.getItem("token");
 		axios
-			.delete(import.meta.env.VITE_API_URL + "/products/" + productID,{
+			.delete(import.meta.env.VITE_API_URL + "/api/products/" + productID,{
 				headers: {
 					Authorization: `Bearer ${token}`
 				}
@@ -63,7 +63,7 @@ export default function AdminProductPage() {
 		useEffect(() => {
              if(isLoading){
                  axios
-                 .get(import.meta.env.VITE_API_URL + "/products")
+                 .get(import.meta.env.VITE_API_URL + "/api/products")
                  .then((response) => {
                      console.log(response.data);
                      setProducts(response.data);
