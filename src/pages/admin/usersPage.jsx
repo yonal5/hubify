@@ -15,7 +15,7 @@ function UserBlockConfirm(props) {
 	function blockUser() {
 		const token = localStorage.getItem("token");
 		axios
-			.put(import.meta.env.VITE_API_URL + "/users/block/" + email,{
+			.put(import.meta.env.VITE_API_URL + "/api/users/block/" + email,{
                 isBlock: !props.user.isBlock
             },{
 				headers: {
@@ -79,7 +79,7 @@ export default function AdminUsersPage() {
 				return;
 			}
 			axios
-				.get(import.meta.env.VITE_API_URL + "/users/all-users", {
+				.get(import.meta.env.VITE_API_URL + "/api/users/all-users", {
 					headers: {
 						Authorization: `Bearer ${token}`,
 					},
@@ -223,4 +223,5 @@ export default function AdminUsersPage() {
 			</div>
 		</div>
 	);
+
 }
