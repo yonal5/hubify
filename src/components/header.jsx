@@ -71,7 +71,7 @@ export default function Header() {
     <header className="w-full bg-accent  h-[100px] text-white px-[40px]">
       <div className="w-full h-full flex relative ">
         <img
-          src="/logo.png"
+          src="/Hubify.png"
           className="hidden lg:flex h-full absolute w-[170px] left-0  object-cover"
         />
         {/* mobile header: menu, logo and search toggle */}
@@ -80,7 +80,7 @@ export default function Header() {
             className="absolute left-2 text-3xl"
             onClick={() => setIsSidebarOpen(true)}
           />
-          <img src="/logo.png" className="h-full w-[170px] object-cover" />
+          <img src="/Hubify.png" className="h-full w-[170px] object-cover" />
           <button
             className="absolute right-2 text-2xl p-1 rounded bg-white/10"
             aria-label="Open search"
@@ -161,7 +161,7 @@ export default function Header() {
                   onClick={() => setIsSidebarOpen(false)}
                 />
                 <img
-                  src="/logo.png"
+                  src="/Hubify.png"
                   className="  h-full  w-[170px]   object-cover"
                 />
               </div>
@@ -282,160 +282,5 @@ export function TtitleBar() {
 
       <BsCart3 className="w-[30px] h-[30px]" />
     </header>
-  );
-}
-
-
-export function ProductNews() {
-  const desktopSlides = [
-    { type: "video", src: "/gaming 66.mp4", className: "object-contain"},
-    { type: "image", src: "/12 (1).png", className: "object-cover" },
-    { type: "image", src: "/12 (1).jpg", className: "object-cover" },
-    { type: "image", src: "/12 (2).jpg", className: "object-cover" },
-    { type: "image", src: "/12 (3).jpg", className: "object-cover" },
-    { type: "image", src: "/12 (5).jpg", className: "object-cover" },
-    { type: "image", src: "/12 (6).jpg", className: "object-cover" },
-    { type: "image", src: "/12 (7).jpg", className: "object-cover" },
-    { type: "image", src: "/12 (8).jpg", className: "object-cover" },
-    { type: "image", src: "/12 (9).jpg", className: "object-cover" },
-    { type: "image", src: "/12 (10).jpg", className: "object-cover" },
-    { type: "image", src: "/12 (12).jpg", className: "object-cover" },
-    { type: "image", src: "/12 (666).jpg", className: "object-cover" },
-  ];
-
-  const mobileSlides = [
-    { type: "video", src: "/gaming 66.mp4", className: "object-cover" },
-   
-  ];
-
-  const [slides, setSlides] = useState(desktopSlides);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const videoRefs = useRef([]);
-  const intervalRef = useRef(null);
-
-  useEffect(() => {
-    const checkScreen = () => {
-      if (window.innerWidth <= 768) setSlides(mobileSlides);
-      else setSlides(desktopSlides);
-    };
-    checkScreen();
-    window.addEventListener("resize", checkScreen);
-    return () => window.removeEventListener("resize", checkScreen);
-  }, []);
-
-  const togglePlay = (i) => {
-    const video = videoRefs.current[i];
-    if (!video) return;
-    video.paused ? video.play() : video.pause();
-  };
-
-  const startSlider = () => {
-    if (intervalRef.current) return;
-    intervalRef.current = setInterval(
-      () => setCurrentIndex((prev) => (prev + 1) % slides.length),
-      5000
-    );
-  };
-
-  const stopSlider = () => {
-    clearInterval(intervalRef.current);
-    intervalRef.current = null;
-  };
-
-  const prevSlide = () =>
-    setCurrentIndex((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
-  const nextSlide = () =>
-    setCurrentIndex((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
-
-  useEffect(() => {
-    startSlider();
-    return () => stopSlider();
-  }, [slides]);
-
-  useEffect(() => {
-    slides.forEach((slide, i) => {
-      const video = videoRefs.current[i];
-      if (video) {
-        if (i === currentIndex) video.play();
-        else {
-          video.pause();
-          video.currentTime = 0;
-        }
-      }
-    });
-  }, [currentIndex, slides]);
-
-  return (
-    <div
-      className="
-        relative w-full 
-        h-[20vh] sm:h-[40vh] md:h-[50vh] lg:h-[60vh] 
-        overflow-hidden bg-black shadow-lg
-      "
-      onMouseEnter={stopSlider}
-      onMouseLeave={startSlider}
-    >
-      <div
-        className="flex h-full w-full transition-transform duration-700 ease-in-out"
-        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-      >
-        {slides.map((slide, i) => (
-          <div
-            key={i}
-            className="w-full h-full flex-shrink-0 flex justify-center items-center relative"
-          >
-            {slide.type === "image" ? (
-              <img
-                src={slide.src}
-                alt={`Slide ${i}`}
-                className="w-full h-full object-cover"
-              />
-            ) : (
-              <div onClick={() => togglePlay(i)} className="relative w-full h-full flex justify-center items-center group">
-                <video
-                  ref={(el) => (videoRefs.current[i] = el)}
-                  src={slide.src}
-                  autoPlay
-                  loop
-                  muted
-                  className="w-full h-full object-cover"
-                />
-                
-              </div>
-            )}
-          </div>
-        ))}
-      </div>
-
-      {/* Navigation Arrows */}
-      <button
-        onClick={prevSlide}
-        className="hidden absolute top-1/2 left-3 sm:left-5 -translate-y-1/2 text-white bg-black/50 p-2 sm:p-3 lg:flex rounded-full hover:bg-black/70"
-      >
-        <FaChevronLeft size={28} className="lg:flex" />
-        
-      </button>
-
-      <button
-        onClick={nextSlide}
-        className="hidden absolute top-1/2 right-3 sm:right-5 -translate-y-1/2 text-white bg-black/50 p-2 sm:p-3 lg:flex rounded-full hover:bg-black/70"
-      >
-        <FaChevronRight size={28} className="lg:flex" />
-        
-      </button>
-
-      {/* Dots */}
-      <div className="hidden absolute bottom-3 sm:bottom-5 left-1/2 -translate-x-1/2 lg:flex gap-1 sm:gap-2">
-        {slides.map((_, index) => (
-          <div
-            key={index}
-            className={`h-2 w-2 sm:h-3 sm:w-3 rounded-full cursor-pointer ${
-              index === currentIndex ? "bg-orange-500" : "bg-gray-400"
-            }`}
-            onClick={() => setCurrentIndex(index)}
-          />
-        ))}
-      </div>
-    </div>
   );
 }
